@@ -1,0 +1,93 @@
+﻿@model IEnumerable<Company>
+@{
+    ViewBag.Title = "Showing all companies";
+    // Prepare a dictionary to hold the base64 strings or default image paths for company logos
+    var photos = new Dictionary<int, string>();
+
+    foreach (var company in Model)
+    {
+        if (company.CorporateLogoData != null)
+        {
+            string imageBase64Data = Convert.ToBase64String(company.CorporateLogoData);
+            photos[company.ID] = string.Format("data:image/jpg;base64,{0}", imageBase64Data);
+        }
+        else
+        {
+            photos[company.ID] = Url.Content("~/images/defaultProfilePhoto.jpg"); // Correct path resolution for the default image
+        }
+    }
+}
+
+<!-- Filter Form -->
+<form asp-action="Index" asp-controller="Company" method="get">
+    <select asp-items="@(new SelectList(ViewBag.AvailableSkills))" name="SelectedSkill">
+        <option value="">All Skills</option>
+    </select>
+    <input name="searchByCompanyName" placeholder="Company name includes..." value="@ViewBag.searchByCompanyName" id="searchField" />
+    <button type="submit">Filter Results</button>
+    <button type="button" onclick="resetFilter()">Reset Filter</button>
+</form>
+
+<main class="container">
+    <h2>List of Hiring Companies</h2>
+
+    @if (!Model.Any())
+    {
+        <h3>There are no companies.</h3>
+    }
+    else
+    {
+        @foreach (var c in Model)
+        {
+            <div class="row mb-4">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header d-flex justify-content-between">
+                            <h5 class="card-title">@c.Name</h5>
+                            <i class="fas fa-bookmark"></i>
+                        </div>
+                        <div class="row g-0">
+                            <div class="col-md-4 d-flex align-items-center justify-content-center p-2">
+                                <img src="@photos[c.ID]" alt="Company Logo" class="img-fluid rounded-start" style="max-width:400px; max-height:300px;">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <p class="card-text"><i class="fas fa-briefcase"></i> @c.OpenPosition</p>
+                                    <p class="card-text"><i class="fas fa-map-marker-alt"></i> @c.Location</p>
+                                    <p class="card-text"><i class="fas fa-calendar-alt"></i> @c.YearRequirement Years</p>
+                                    <p class="card-text"><i class="fas fa-wrench"></i> @c.Skill</p>
+                                    <p class="card-text"><i class="fas fa-dollar-sign"></i> @c.Salary.ToString("C")</p>
+                                    <p class="card-text"><small class="text-muted"><i class="fas fa-clock"></i> Posted: @c.PostDate?.ToString("yyyy-MM-dd")</small></p>
+                                </div>
+                                <div class="card-footer d-flex justify-content-end bg-transparent border-top-0">
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link" href="#" id="CompanyActionsDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fas fa-bars"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="CompanyActionsDropdown">
+                                            <a class="dropdown-item" asp-action="ShowDetails" asp-controller="Company" asp-route-id="@c.ID">More Details</a>
+                                            <a class="dropdown-item" asp-action="Edit" asp-controller="Company" asp-route-id="@c.ID">Edit</a>
+                                            <a class="dropdown-item" asp-action="Delete" asp-controller="Company" asp-route-id="@c.ID">Delete</a>
+                                        </div>
+                                    </li>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+    <a asp-action="Create" asp-controller="Company" class="btn btn-primary mt-4">Add a New Company</a>
+</main>
+
+
+
+@section Scripts {
+    <script>
+        function resetFilter() {
+            document.getElementById('searchField').value = '';
+            document.forms[0].submit();
+        }
+    </script>
+}

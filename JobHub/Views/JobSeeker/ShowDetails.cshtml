@@ -1,0 +1,39 @@
+﻿@model JobSeeker
+@{
+    ViewBag.Title = "JobSeeker Details";
+}
+
+<main class="container my-4">
+    <div class="row">
+        <div class="col-md-12">
+            @if (Model == null)
+            {
+                <div class="alert alert-danger" role="alert">
+                    <h4 class="alert-heading">JobSeeker Not Found!</h4>
+                    <p>There is no JobSeeker with the specified ID.</p>
+                </div>
+            }
+            else
+            {
+                <h1 class="mb-4">JobSeeker Information</h1>
+                <dl class="row">
+                    <dt class="col-sm-3">First Name</dt>
+                    <dd class="col-sm-9">@Model.firstName</dd>
+
+                    <dt class="col-sm-3">Last Name</dt>
+                    <dd class="col-sm-9">@Model.lastName</dd>
+
+                    <dt class="col-sm-3">Email Address</dt>
+                    <dd class="col-sm-9">@Model.EmailAddress</dd>
+
+                    <dt class="col-sm-3">Phone Number</dt>
+                    <dd class="col-sm-9">@Model.PhoneNumber</dd>
+
+                    <dt class="col-sm-3">Address</dt>
+                    <dd class="col-sm-9">@Model.Address</dd>
+                </dl>
+            }
+        </div>
+    </div>
+    <a href="@Url.Action("Index", "JobSeeker")" class="btn btn-primary"><i class="fas fa-arrow-left"></i> Back to JobSeeker List</a>
+</main>

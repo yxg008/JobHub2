@@ -1,0 +1,54 @@
+﻿@model IEnumerable<JobSeeker>
+@{
+    ViewBag.Title = "Showing all JobSeekers";
+}
+
+<form asp-action="Index" asp-controller="JobSeeker" method="get" class="mb-4">
+    <input name="searchByFirstLetter" placeholder="Enter initial letter ..." value="@ViewBag.searchByFirstLetter" id="searchField" class="mr-2" />
+    <button type="submit" class="btn btn-primary mr-2">Filter Results</button>
+    <button type="button" onclick="resetFilter()" class="btn btn-secondary">Reset Filter</button>
+</form>
+
+<main class="container">
+    <h2>List of JobSeekers</h2>
+    @if (!Model.Any())
+    {
+        <h3>There are no JobSeekers.</h3>
+    }
+    else
+    {
+        <div class="row">
+            @foreach (var j in Model)
+            {
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">@j.firstName @j.lastName</h5>
+                            <p class="card-text">
+                                <i class="fas fa-envelope"></i> Email: @j.EmailAddress<br>
+                                <i class="fas fa-phone"></i> Phone: @j.PhoneNumber<br>
+                                <i class="fas fa-home"></i> Address: @j.Address<br>
+                                <i class="fas fa-briefcase"></i> Job Title: @j.JobTitle
+                            </p>
+                            <div class="card-actions d-flex justify-content-between align-items-center">
+                                <a asp-action="ShowDetails" asp-controller="JobSeeker" asp-route-id="@j.ID" class="btn btn-sm btn-info">More Details</a>
+                                <a asp-action="Edit" asp-controller="JobSeeker" asp-route-id="@j.ID" class="btn btn-sm btn-warning">Edit</a>
+                                <a asp-action="Delete" asp-controller="JobSeeker" asp-route-id="@j.ID" class="btn btn-sm btn-danger">Delete</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    <a asp-action="Create" asp-controller="JobSeeker" class="btn btn-success" aria-label="Add a new JobSeeker">Add a New JobSeeker</a>
+</main>
+
+@section Scripts {
+    <script>
+        function resetFilter() {
+            document.getElementById('searchField').value = '';
+            document.forms[0].submit();
+        }
+    </script>
+}

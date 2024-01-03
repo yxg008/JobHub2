@@ -1,0 +1,73 @@
+﻿@model JobSeeker
+@{
+    ViewBag.Title = "Edit JobSeeker Profile";
+}
+
+<div class="container">
+    <h1 class="mt-4 mb-4">Edit Profile: @Model.firstName @Model.lastName</h1>
+
+    <!-- Begin Form -->
+    <form asp-controller="JobSeeker" asp-action="Edit" method="post" class="needs-validation">
+        <!-- Anti-Forgery Token for Security -->
+        @Html.AntiForgeryToken()
+
+        <!-- Hidden Fields for ID, First Name, and Last Name -->
+        <input asp-for="ID" type="hidden" />
+        <input asp-for="firstName" type="hidden" />
+        <input asp-for="lastName" type="hidden" />
+
+        <!-- Email Address Field -->
+        <div class="form-group">
+            <label asp-for="EmailAddress">Email Address</label>
+            <input asp-for="EmailAddress" class="form-control" required />
+            <span asp-validation-for="EmailAddress" class="text-danger"></span>
+            <div class="invalid-feedback">
+                Please enter a valid email address.
+            </div>
+        </div>
+
+        <!-- Phone Number Field -->
+        <div class="form-group">
+            <label asp-for="PhoneNumber">Phone Number</label>
+            <input asp-for="PhoneNumber" class="form-control" required />
+            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+            <div class="invalid-feedback">
+                Please enter a valid phone number.
+            </div>
+        </div>
+
+        <!-- Address Field -->
+        <div class="form-group">
+            <label asp-for="Address">Address</label>
+            <input asp-for="Address" class="form-control" required />
+            <span asp-validation-for="Address" class="text-danger"></span>
+            <div class="invalid-feedback">
+                Please enter an address.
+            </div>
+        </div>
+
+        <!-- Job Title Field -->
+        <div class="form-group">
+            <label asp-for="JobTitle">Job Title</label>
+            <input asp-for="JobTitle" class="form-control" required />
+            <span asp-validation-for="JobTitle" class="text-danger"></span>
+            <div class="invalid-feedback">
+                Please enter a job title.
+            </div>
+        </div>
+
+        <!-- Form Buttons -->
+        <button type="submit" class="btn btn-primary mt-3">Save Changes</button>
+        <a href="javascript:history.back()" class="btn btn-secondary mt-3">Cancel</a>
+
+
+        <!-- Validation Summary -->
+        <div asp-validation-summary="All" class="text-danger"></div>
+    </form>
+</div>
+
+@section JobHubSection {
+    <div class="fixed-bottom-right">
+        <a class="btn btn-danger" asp-action="Delete" asp-controller="JobSeeker" asp-route-id="@Model.ID">Delete Profile</a>
+    </div>
+}

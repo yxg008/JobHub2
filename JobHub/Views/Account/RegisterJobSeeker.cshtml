@@ -1,0 +1,50 @@
+﻿@using JobHub.ViewModels;
+@model RegisterJobSeekerViewModel
+@{
+    ViewData["Title"] = "RegisterJobSeeker";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Register a new JobSeeker!</h1>
+
+<form asp-action="RegisterJobSeeker" asp-controller="Account" method="post" class="form-horizontal">
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="form-group">
+        <label asp-for="FirstName" class="control-label"></label>
+        <input asp-for="FirstName" class="form-control" />
+        <span asp-validation-for="FirstName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="LastName" class="control-label"></label>
+        <input asp-for="LastName" class="form-control" />
+        <span asp-validation-for="LastName" class="text-danger"></span>
+    </div>
+
+   <div class="form-group">
+        <label asp-for="UserName" class="control-label"></label>
+        <input asp-for="UserName" class="form-control" />
+        <span asp-validation-for="UserName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Password" class="control-label"></label>
+        <input asp-for="Password" type="password" class="form-control" />
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="OfficeEmail" class="control-label"></label>
+        <input asp-for="OfficeEmail" class="form-control" />
+        <span asp-validation-for="OfficeEmail" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="OfficePhone" class="control-label"></label>
+        <input asp-for="OfficePhone" class="form-control" />
+        <span asp-validation-for="OfficePhone" class="text-danger"></span>
+    </div>
+
+    <input type="submit" value="Register new user" class="btn btn-warning" />
+</form>

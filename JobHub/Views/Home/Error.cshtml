@@ -1,0 +1,29 @@
+﻿@{
+    ViewData["Title"] = "Error";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    // List of available images
+    var errorImages = new List<string>
+    {
+        Url.Content("~/images/banner-1.jpg"),
+        Url.Content("~/images/job.jpg"),
+        Url.Content("~/images/company.jpg")
+       
+    };
+
+    // Randomly select an image
+    var random = new Random();
+    var selectedImage = errorImages[random.Next(errorImages.Count)];
+}
+
+<div class="text-center mt-5">
+    <h1>Oops! Something Went Wrong.</h1>
+    <p>We apologize for any inconvenience. Please try again, or go back to our homepage.</p>
+
+    <!-- Display the randomly selected image -->
+    <img src="@selectedImage" width="600" height="600" alt="Error Image" />
+
+    <div class="mt-4">
+        <a href="/" class="btn btn-primary">Go Home</a>
+    </div>
+</div>

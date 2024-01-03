@@ -1,0 +1,83 @@
+﻿@model Company
+@{
+    ViewBag.Title = "Edit Company Page";
+}
+
+<div class="container">
+    <h1 class="mt-4 mb-4">Edit Company Record: @Model.Name</h1>
+
+    <!-- Begin Form -->
+    <form asp-controller="Company" asp-action="Edit" method="post" class="needs-validation" novalidate>
+        <!-- Anti-Forgery Token for Security -->
+        @Html.AntiForgeryToken()
+
+        <!-- Hidden Fields -->
+        <input asp-for="ID" type="hidden" />
+        <input asp-for="Name" type="hidden" />
+        <input asp-for="Location" type="hidden" />
+
+        <!-- Open Position Field -->
+        <div class="form-group">
+            <label asp-for="OpenPosition"></label>
+            <input asp-for="OpenPosition" class="form-control" required />
+            <div class="invalid-feedback">
+                Please enter an open position.
+            </div>
+        </div>
+
+        <!-- Year Requirement Field -->
+        <div class="form-group">
+            <label asp-for="YearRequirement"></label>
+            <input asp-for="YearRequirement" class="form-control" required />
+            <div class="invalid-feedback">
+                Please enter a year requirement.
+            </div>
+        </div>
+
+        <!-- Salary Field -->
+        <div class="form-group">
+            <label asp-for="Salary"></label>
+            <input asp-for="Salary" class="form-control" required />
+            <div class="invalid-feedback">
+                Please enter a salary.
+            </div>
+        </div>
+
+        <!-- Skill Selection Field -->
+        <div class="form-group">
+            <label asp-for="Skill"></label>
+            <select asp-for="Skill" asp-items="@Html.GetEnumSelectList(typeof(Skills))" class="form-control" required>
+                <option value=""> Select One</option>
+            </select>
+            <div class="invalid-feedback">
+                Please select a skill.
+            </div>
+        </div>
+
+        <!-- Post Date Field -->
+        <div class="form-group">
+            <label asp-for="PostDate"></label>
+            <input asp-for="PostDate" type="date" class="form-control" required />
+            <div class="invalid-feedback">
+                Please enter a post date.
+            </div>
+        </div>
+
+        <!-- Form Buttons -->
+        <button type="submit" class="btn btn-primary mt-3">Save Changes</button>
+        <a href="javascript:history.back()" class="btn btn-secondary mt-3">Cancel</a>
+
+        <!-- Validation Summary -->
+        <div asp-validation-summary="All" class="text-danger"></div>
+    </form>
+
+    </div>
+    @section JobHubSection {
+    <div class="fixed-bottom-right">
+        <a class="btn btn-danger" asp-action="Delete" asp-controller="Company" asp-route-id="@Model.ID">Delete Current Company</a>
+    </div>
+}
+
+
+
+

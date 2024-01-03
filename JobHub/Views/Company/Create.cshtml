@@ -1,0 +1,100 @@
+﻿@model Company
+@{
+    ViewBag.Title = "Create a New Company";
+}
+
+<div class="container">
+    <h1 class="mt-4 mb-4">Create a New Company Record</h1>
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <form asp-controller="Company" asp-action="Create" method="post" class="needs-validation" novalidate enctype="multipart/form-data">
+
+      @*  <!-- ID Field -->
+        <div class="form-group">
+            <label asp-for="ID"></label>
+            <input asp-for="ID" placeholder="Enter company ID" class="form-control" required />
+            <span asp-validation-for="ID" class="text-danger"></span>
+            <div class="invalid-feedback">
+                Please enter an ID.
+            </div>
+        </div>*@
+
+        <!-- Name Field -->
+        <div class="form-group">
+            <label asp-for="Name"></label>
+            <input asp-for="Name" placeholder="Enter company name" class="form-control" required />
+            <span asp-validation-for="Name" class="text-danger"></span>
+            <div class="invalid-feedback">
+                Please enter a name.
+            </div>
+        </div>
+
+        <!-- Open Position Field -->
+        <div class="form-group">
+            <label asp-for="OpenPosition"></label>
+            <input asp-for="OpenPosition" placeholder="Enter open position" class="form-control" required />
+            <span asp-validation-for="OpenPosition" class="text-danger"></span>
+            <div class="invalid-feedback">
+                Please enter an open position.
+            </div>
+        </div>
+
+        <!-- Year Requirement Field -->
+        <div class="form-group">
+            <label asp-for="YearRequirement"></label>
+            <input asp-for="YearRequirement" placeholder="Enter year requirement" class="form-control" required />
+            <span asp-validation-for="YearRequirement" class="text-danger"></span>
+            <div class="invalid-feedback">
+                Please enter a year requirement.
+            </div>
+        </div>
+
+        <!-- Salary Field -->
+        <div class="form-group">
+            <label asp-for="Salary"></label>
+            <input asp-for="Salary" placeholder="Enter salary" class="form-control" required />
+            <span asp-validation-for="Salary" class="text-danger"></span>
+            <div class="invalid-feedback">
+                Please enter a salary.
+            </div>
+        </div>
+
+        <!-- Skill Field -->
+        <div class="form-group">
+            <label asp-for="Skill"></label>
+            <select asp-for="Skill" asp-items="@Html.GetEnumSelectList<Skills>()" class="form-control" required></select>
+            <span asp-validation-for="Skill" class="text-danger"></span>
+            <div class="invalid-feedback">
+                Please select a skill.
+            </div>
+        </div>
+
+        <!-- Location Field -->
+        <div class="form-group">
+            <label asp-for="Location"></label>
+            <input asp-for="Location" placeholder="Enter location" class="form-control" required />
+            <span asp-validation-for="Location" class="text-danger"></span>
+            <div class="invalid-feedback">
+                Please enter a location.
+            </div>
+        </div>
+
+        <!-- Post Date Field -->
+        <div class="form-group">
+            <label asp-for="PostDate"></label>
+            <input asp-for="PostDate" type="date" class="form-control" required />
+            <span asp-validation-for="PostDate" class="text-danger"></span>
+            <div class="invalid-feedback">
+                Please enter a post date.
+            </div>
+        </div>
+
+        <!-- File Upload Field for Company Profile Photo -->
+        <div class="form-group">
+            <label for="CompanyProfilePhoto">Company Profile Photo</label>
+            <input type="file" class="form-control-file" id="CompanyProfilePhoto" name="CompanyProfilePhoto" accept="image/*">
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-3">Save New Company</button>
+        <a class="btn btn-secondary mt-3" asp-controller="Company" asp-action="Index">Go Back to Company List</a>
+    </form>
+</div>

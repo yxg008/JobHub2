@@ -1,0 +1,20 @@
+﻿@model JobHub.ViewModels.RegisterViewModel
+@{
+    ViewData["Title"] = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Register a new user!</h1>
+
+<form asp-action="Register" asp-controller="Account">
+    <div asp-validation-summary="All"></div>
+    <label asp-for="CompanyName"></label>  <input asp-for="CompanyName" /> <br />
+    <label asp-for="UserName"></label>  <input asp-for="UserName" /> <br />
+    <label asp-for="Password"></label>  <input asp-for="Password" type="password" /> <br />
+    <label asp-for="Remember"></label>  <input asp-for="Remember" /> <br />
+    <label asp-for="OfficeEmail"></label>  <input asp-for="OfficeEmail" /> <br />
+    <label asp-for="OfficePhone"></label>  <input asp-for="OfficePhone" /> <br />
+
+    <br />
+    <input type="submit" value="Register new user" class="btn btn-warning" />
+</form>

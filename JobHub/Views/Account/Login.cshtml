@@ -1,0 +1,34 @@
+﻿@model JobHub.ViewModel.LoginViewModel
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<form asp-action="Login" asp-controller="Account" method="post">
+    @Html.AntiForgeryToken()
+
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="form-group">
+        <label asp-for="UserName" class="control-label">User Name</label>
+        <input asp-for="UserName" class="form-control" />
+        <span asp-validation-for="UserName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Password" class="control-label">Password</label>
+        <input asp-for="Password" type="password" class="form-control" />
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+
+    <div class="form-group form-check">
+        <input asp-for="Remember" type="checkbox" class="form-check-input" />
+        <label asp-for="Remember" class="form-check-label">Remember me</label>
+    </div>
+
+    <input type="hidden" name="returnUrl" value="@ViewData["ReturnUrl"]" />
+
+    <button type="submit" class="btn btn-warning">Log in</button>
+</form>

@@ -1,0 +1,17 @@
+﻿@model Company
+@{
+    ViewBag.Title = "Delete page";
+}
+  
+
+    <main class="container">
+        <h1 class="mt-4 mb-4">Delete a Company Record</h1>
+        <form asp-controller="Company" asp-action="DeleteConfirmed" method="post">
+            <input type="hidden" asp-for="ID">
+            <p>Are you sure you want to delete the company '@Model.Name' with position '@Model.OpenPosition'?</p>
+            <button type="submit" class="btn btn-danger mt-3">Confirm Delete</button>
+            <a class="btn btn-secondary mt-3" asp-controller="Company" asp-action="Index">Cancel</a>
+            <a class="btn btn-success mt-3" onclick="history.back()">Go Back</a>
+        </form>
+    </main>
+

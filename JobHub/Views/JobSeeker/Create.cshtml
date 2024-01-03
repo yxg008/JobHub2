@@ -1,0 +1,73 @@
+﻿@model JobSeeker
+@{
+    ViewBag.Title = "Start Your Job Seeking Journey";
+}
+
+<div class="container">
+    <h1 class="mt-4 mb-4">Join Our JobSeeker Community</h1>
+    <div asp-validation-summary="All" class="text-danger" enctype="multipart/form-data"></div>
+    <form asp-controller="JobSeeker" asp-action="Create" method="post" class="needs-validation">
+        @Html.AntiForgeryToken()
+        <!-- Name Field -->
+        <div class="form-group">
+            <label asp-for="firstName">First Name</label>
+            <input asp-for="firstName" placeholder="Enter your first name" class="form-control" required />
+            <span asp-validation-for="firstName" class="text-danger"></span>
+            <div class="invalid-feedback">
+                First name cannot be blank.
+            </div>
+        </div>
+         
+        <div class="form-group">
+            <label asp-for="lastName">Last Name</label>
+            <input asp-for="lastName" placeholder="Enter your last name" class="form-control" required />
+            <span asp-validation-for="lastName" class="text-danger"></span>
+            <div class="invalid-feedback">
+                Last name cannot be blank.
+            </div>
+        </div>
+
+        <!-- Email Field -->
+        <div class="form-group">
+            <label asp-for="EmailAddress">Email Address</label>
+            <input asp-for="EmailAddress" placeholder="Enter your email address" class="form-control" required />
+            <span asp-validation-for="EmailAddress" class="text-danger"></span>
+            <div class="invalid-feedback">
+                Please enter a valid email address.
+            </div>
+        </div>
+
+        <!-- Phone Number Field -->
+        <div class="form-group">
+            <label asp-for="PhoneNumber">Phone Number</label>
+            <input asp-for="PhoneNumber" placeholder="Enter your phone number" class="form-control" required />
+            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+            <div class="invalid-feedback">
+                Please enter a valid phone number.
+            </div>
+        </div>
+
+        <!-- Address Field -->
+        <div class="form-group">
+            <label asp-for="Address">Address</label>
+            <input asp-for="Address" placeholder="Enter your address" class="form-control" required />
+            <span asp-validation-for="Address" class="text-danger"></span>
+            <div class="invalid-feedback">
+                Please enter an address.
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="JobTitle">Job Title</label>
+            <input asp-for="JobTitle" placeholder="Enter your JobTitle" class="form-control" required />
+            <span asp-validation-for="JobTitle" class="text-danger"></span>
+            <div class="invalid-feedback">
+                Please enter an JobTitle.
+            </div>
+        </div>
+
+
+        <button type="submit" class="btn btn-success mt-3">Register</button>
+        <a class="btn btn-secondary mt-3" asp-controller="JobSeeker" asp-action="Index">Back to Listings</a>
+    </form>
+</div>

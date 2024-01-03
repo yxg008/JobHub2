@@ -1,0 +1,49 @@
+﻿@model Company
+@{
+    ViewBag.Title = "ShowDetails page";
+}
+
+<main class="container my-4">
+    <div class="row">
+        <div class="col-md-12">
+            @if (Model == null)
+            {
+                <div class="alert alert-danger" role="alert">
+                    <h4 class="alert-heading">Company not found!</h4>
+                    <p>There is no company with the specified ID.</p>
+                </div>
+            }
+            else
+            {
+                <h1 class="mb-4">Company Information</h1>
+                <dl class="row">
+                    <dt class="col-sm-3">Name:</dt>
+                    <dd class="col-sm-9">@Model.Name</dd>
+
+                    <dt class="col-sm-3">Location:</dt>
+                    <dd class="col-sm-9">@Model.Location</dd>
+
+                    <dt class="col-sm-3">Post Date:</dt>
+                    <dd class="col-sm-9">@Model.PostDate</dd>
+
+                    <dt class="col-sm-3">Salary:</dt>
+                    <dd class="col-sm-9">@Model.Salary</dd>
+
+                    <dt class="col-sm-3">Year Requirement:</dt>
+                    <dd class="col-sm-9">@Model.YearRequirement</dd>
+                </dl>
+                @if (ViewBag.companyProfilePhoto != null)
+                {
+                    <img src="@ViewBag.companyProfilePhoto" alt="Company Profile Photo" height="100" />
+                }
+                else
+                {
+                    <img src="~/images/defaultProfilePhoto.jpg" alt="Default Profile Photo" height="100" />
+                }
+            }
+        </div>
+    </div>
+    <a href="@Url.Action("Index", "Company")" class="btn btn-primary">
+        <i class="fas fa-arrow-left"></i> Back to Company List
+    </a>
+</main>

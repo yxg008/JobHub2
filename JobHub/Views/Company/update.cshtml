@@ -1,0 +1,24 @@
+﻿@model Company
+@{
+    ViewBag.Title = "update";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>update</title>
+</head>
+<body>
+    <h1>Tech Companies: @ViewBag.company.Name</h1>
+    <p>Open Position: @ViewBag.company.OpenPosition</p>
+    <p>Year Requirement: @ViewBag.company.yearRequirement</p> 
+    <p>Salary: @ViewBag.company.Salary</p>
+    <p>Skills: @ViewBag.company.Skills</p>
+    <p>Location: @ViewBag.company.Location</p>
+    <p>Post Date: @ViewBag.company.PostDate</p>
+    <h2>Debug:</h2>
+    <p>@Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.company)</p>
+</body>
+</html>
