@@ -9,8 +9,6 @@
     - [Installation Using Visual Studio](#installation-using-visual-studio)
 5. [Testing](#testing)
 6. [Deployment](#deployment)
-7. [Contributing](#contributing)
-8. [License](#license)
 
 ## Overview
 
